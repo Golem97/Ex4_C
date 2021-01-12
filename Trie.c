@@ -29,7 +29,7 @@ int main(int argc, char const *argv[])
     int i = 0;
     char *word = (char*)malloc(1);
     node* head = addNode(0);
-
+	(*head).count--;
     while(TRUE)
     {
         char let = getchar();
@@ -43,11 +43,13 @@ int main(int argc, char const *argv[])
         }
 
         else if(checktnai(let)){ // if we have a space or reached EOF
+
             word = realloc(word, i+sizeof(char)); //allocate more space to word
             word[i] = '\0'; //indicate end of word
             i=0;
-            addWord(head, word);
 
+            addWord(head, word);
+            
             if(let == EOF) break;
         }
     }
@@ -63,7 +65,7 @@ int main(int argc, char const *argv[])
 }
 
 boolean checktnai(char c){
-    if(c == EOF || c == ' ') return TRUE;
+    if(c == EOF || c == ' ' || c == '\n') return TRUE;
     else return FALSE;
 }
 
